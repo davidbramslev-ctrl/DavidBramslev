@@ -1,3 +1,57 @@
+/* 📱 Mobile styles */
+@media (max-width: 768px) {
+  .header-title {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 16px;
+    margin: 0;
+    text-align: left;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    text-transform: none;
+  }
+  .header-mail {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    color: #1a237e;
+  }
+  header {
+    min-height: 40px;
+    padding: 0;
+  }
+  main {
+    margin-top: 60px;
+    min-height: 60vh;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 2vw;
+  }
+  .film-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+  .film-list li {
+    font-size: 24px;
+    padding: 0 16px;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .bottom-info {
+    font-size: 0.8rem;
+    padding-bottom: 80px;
+  }
+}
 .bottom-social img {
   filter: none;
   transition: filter 0.3s;
@@ -26,7 +80,7 @@
   position: absolute;
   top: 32px;
   right: 3%;
-  font-size: 14px;
+  font-size: 12.6px;
   color: #1a237e;
 }
 .header-title {
@@ -58,7 +112,7 @@ main {
   width: 100%;
   text-align: center;
   font-family: inherit;
-  font-size: 1.1rem;
+  font-size: 0.99rem;
   color: #002bff;
   background: transparent;
   margin: 10vh 0 0 0;
@@ -66,7 +120,7 @@ main {
 }
 .bottom-info .subtitle {
   margin-top: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #222;
 }
 body {
@@ -87,7 +141,7 @@ header {
 }
 
 header h1 {
-  font-size: 28px;
+  font-size: 25.2px;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0.5px;
@@ -126,7 +180,7 @@ main {
 }
 
 .film-list li {
-  font-size: 72px;
+  font-size: 64.8px;
   font-weight: 500;
   padding: 0 50px;
   margin: 0;
@@ -189,35 +243,8 @@ main {
 }
 
 .film-info {
-  font-size: 24px;
+  font-size: 21.6px;
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
   transition: color 0.3s ease, letter-spacing 0.3s ease;
-/* 📱 Mobile styles */
-@media (max-width: 768px) {
-  .header-title {
-    font-size: 20px;
-    margin-top: 16px;
-  }
-
-  .header-mail {
-    font-size: 12px;
-    right: 10px;
-  }
-
-  .film-list {
-    flex-direction: column; /* stack vertically on mobile */
-    align-items: center;
-  }
-
-  .film-list li {
-    font-size: 32px;
-    padding: 10px 0;
-  }
-
-  .bottom-info {
-    font-size: 0.9rem;
-    padding-bottom: 100px;
-  }
-}
