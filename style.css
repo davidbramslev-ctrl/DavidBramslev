@@ -21,11 +21,12 @@
     letter-spacing: 0.5px;
     font-weight: 400;
     text-transform: none;
-    color: #111;
-    flex: 1;
+    color: #002bff;
+    flex: 0 1 auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-self: center;
   }
   .header-mail {
     font-size: 10px;
@@ -34,15 +35,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex-shrink: 0;
+    flex: 0 1 auto;
+    align-self: center;
     max-width: 40vw;
   }
   main {
-    margin-top: 60px;
+    margin-top: 40px;
     min-height: 60vh;
     flex-direction: column;
     align-items: stretch;
-    padding: 0 2vw;
+    padding: 32px 2vw 0 2vw;
+    box-sizing: border-box;
   }
   .film-list {
     flex-direction: column;
@@ -51,13 +54,14 @@
     justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 100vw;
+    width: auto;
     padding: 0;
     margin: 0;
     gap: 0;
+    touch-action: pan-y;
   }
   .film-list li {
-    font-size: 24px;
+    font-size: 12px;
     padding: 32px 0;
     margin-bottom: 16px;
     letter-spacing: 0.5px;
@@ -69,12 +73,13 @@
     padding-bottom: 80px;
   }
 
-    .film-list li.mobile-hover {
-      color: #002bff;
-      letter-spacing: 2px;
-      font-weight: 500;
-      transition: color 0.3s, letter-spacing 0.3s;
-    }
+  /* Remove hover effect for mobile */
+  .film-list li.mobile-hover {
+    color: #002bff;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: color 0.3s, letter-spacing 0.3s;
+  }
   }
 }
 .bottom-social img {
