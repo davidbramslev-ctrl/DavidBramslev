@@ -1,289 +1,118 @@
-/* Highlight active item on mobile */
-.film-list li.mobile-hover {
-  color: #002bff;
-  letter-spacing: 2px;
-  font-weight: 500;
-  transition: color 0.3s, letter-spacing 0.3s;
-}
-/* 📱 Mobile styles */
-@media (max-width: 768px) {
-  header {
-    min-height: 40px;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    background: #fff;
-    z-index: 1000;
-    box-sizing: border-box;
-  }
-  .header-title {
-    font-size: 16px;
-    margin: 0;
-    text-align: left;
-    letter-spacing: 0.5px;
-    font-weight: 400;
-    text-transform: none;
-    color: #002bff;
-    flex: 0 1 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: center;
-    transform: translateY(-5%);
-  }
-  .header-mail {
-    font-size: 10px;
-    color: #1a237e;
-    margin-left: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 0 1 auto;
-    align-self: center;
-    max-width: 40vw;
-  }
-  main {
-    margin-top: 40px;
-    min-height: 60vh;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 32px 2vw 0 2vw;
-    box-sizing: border-box;
-  }
-  .film-list {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    gap: 0;
-    touch-action: pan-y;
-  }
-  .film-list li {
-    font-size: 0.7em;
-    padding: 32px 0;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
-    white-space: normal;
-    text-align: center;
-  }
-  .bottom-info {
-    font-size: 0.8rem;
-    padding-bottom: 80px;
+document.addEventListener("DOMContentLoaded", () => {
+
+  const filmItems = document.querySelectorAll(".film-list li");
+  const body = document.body;
+
+  // Map titles to background images
+  const bgImages = {
+    "OVER-WOKE": "media/OVER-WOKE1.png",
+    "YOU LIKE DRUGS": "media/YouLikeDrugs1.png",
+    "WHERE DID I GO": "media/WhereDidIGo.jpg",
+    "EN LYCKLIG MAN": "media/EnLyckligman5.png",
+    "WHITE ANASTASIA": "media/WHITEANASTASIA3.png",
+    "FEELINGS": "media/Feelings1.PNG",
+    "KEVINS GOLD": "media/KevinsGold1.jpeg",
+    "COFFEE BREAK": "media/CoffeeBreak1.JPG"
+  };
+
+  function isMobile() {
+    return window.innerWidth <= 768;
   }
 
-  /* Remove hover effect for mobile */
-  .film-list li.mobile-hover {
-    color: #002bff;
-    letter-spacing: 2px;
-    font-weight: 500;
-    transition: color 0.3s, letter-spacing 0.3s;
+  // Find the film title closest to the top
+  function getTopItem() {
+    let topItem = null;
+    let minTop = Infinity;
+    filmItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= 60 && rect.top < minTop) { // 60px ~ header height
+        minTop = rect.top;
+        topItem = item;
+      }
+    });
+    return topItem;
   }
+
+  // Apply highlight + background on scroll
+  function updateMobileHighlightBg() {
+    if (!isMobile()) return;
+
+    filmItems.forEach(item => {
+      item.classList.remove("mobile-hover");
+    });
+
+    const topItem = getTopItem();
+    if (topItem) {
+      topItem.classList.add("mobile-hover");
+      const title = topItem.textContent.trim().toUpperCase();
+      const imgPath = bgImages[title];
+      if (imgPath) {
+        body.style.backgroundImage = `url('${imgPath}')`;
+        body.style.backgroundSize = "cover";
+        body.style.backgroundPosition = "center";
+        body.style.backgroundRepeat = "no-repeat";
+      }
+    } else {
+      body.style.backgroundImage = "";
+    }
   }
-}
-.bottom-social img {
-  filter: none;
-  transition: filter 0.3s;
-}
-.bg-cover .bottom-social img {
-  filter: brightness(0) saturate(100%) invert(18%) sepia(100%) saturate(7490%) hue-rotate(222deg) brightness(100%) contrast(100%);
-}
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: transparent;
-  box-shadow: none;
-  min-height: 90px;
-}
-.header-icons {
-  position: absolute;
-  top: 32px;
-  left: 12px;
-  display: flex;
-  gap: 8px;
-}
-.header-mail {
-  position: absolute;
-  top: 32px;
-  right: 3%;
-  font-size: 12.6px;
-  color: #1a237e;
-}
-.header-title {
-  margin-top: 32px;
-}
-main {
-  margin-top: 120px;
-}
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-main {
-  margin-top: 120px;
-}
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-/* Bottom info text at end of page */
-.bottom-info {
-  width: 100%;
-  text-align: center;
-  font-family: inherit;
-  font-size: 0.99rem;
-  color: #002bff;
-  background: transparent;
-  margin: 10vh 0 0 0;
-  padding-bottom: 400px;
-}
-.bottom-info .subtitle {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #222;
-}
-body {
-  margin: 0;
-  overflow-x: hidden;
-  overflow-x: hidden;
-  font-family: "proxima-nova", sans-serif;
-  background: #ffffff;
-  background-attachment: fixed;
-  color: #111;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 
-header {
-  padding: 12px 20px;
-}
+  window.addEventListener("scroll", updateMobileHighlightBg, { passive: true });
+  window.addEventListener("resize", updateMobileHighlightBg);
+  updateMobileHighlightBg();
 
-header h1 {
-  font-size: 25.2px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0.5px;
-  color: #002bff;
-  margin: 1% auto 0 auto;
-  text-align: center;
-  text-transform: capitalize;
-  font-family: 'seismic-latin-variable', sans-serif;
-  font-variation-settings: 'wght' 409, 'SEIS' 100;
-}
+    // Desktop: keep hover/click logic
+    filmItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const videoUrl = item.getAttribute("data-video");
+        const infoText = item.getAttribute("data-info");
+        const title = item.textContent.trim().toUpperCase();
+        const imgPath = bgImages[title];
+        if (imgPath) {
+          body.style.backgroundImage = `url('${imgPath}')`;
+          body.style.backgroundSize = 'cover';
+          body.style.backgroundPosition = 'center';
+          body.style.backgroundRepeat = 'no-repeat';
+          modalActive = true;
+        }
+        videoFrame.src = videoUrl;
+        filmInfo.textContent = infoText;
+        modal.classList.remove("hidden");
+      });
+      if (!isMobile()) {
+        item.addEventListener("mouseenter", () => {
+          if (modalActive) return;
+          const title = item.textContent.trim().toUpperCase();
+          const imgPath = bgImages[title];
+          if (imgPath) {
+            body.style.backgroundImage = `url('${imgPath}')`;
+            body.style.backgroundSize = 'cover';
+            body.style.backgroundPosition = 'center';
+            body.style.backgroundRepeat = 'no-repeat';
+            item.classList.add('mobile-hover');
+          }
+        });
+        item.addEventListener("mouseleave", () => {
+          if (modalActive) return;
+          setTimeout(() => {
+            // Only clear background if not hovering any film title
+            const isHoveringAny = Array.from(filmItems).some(el => el.matches(':hover'));
+            if (!isHoveringAny) {
+              body.style.backgroundImage = '';
+              item.classList.remove('mobile-hover');
+            }
+          }, 500);
+        });
+      }
+    });
 
-main {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.film-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.film-list::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-  gap: 50px;
-  justify-content: flex-start;
-}
-
-.film-list li {
-  font-size: 61.56px;
-  font-weight: 500;
-  padding: 0 50px;
-  margin: 0;
-  cursor: pointer;
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
-  transform: translateY(-5%);
-}
-
-.film-list li:hover {
-  color: #1a237e;
-  color: #002bff;
-  letter-spacing: 2px;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: transparent;
-  border-radius: 0;
-  border: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 900px;
-  width: 90%;
-}
-
-.video-wrapper {
-  border: none;
-  position: relative;
-
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 8px;
-}
-
-.film-info {
-  font-size: 21.6px;
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
+    // Close modal when clicking outside modal-content
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        videoFrame.src = ""; // Stop video when closing
+        body.style.backgroundImage = '';
+        modalActive = false;
+      }
+    });
+});
