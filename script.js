@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "EN LYCKLIG MAN": "media/EnLyckligman5.png",
   "WHITE ANASTASIA": "media/WHITEANASTASIA3.png",
   "FEELINGS": "media/Feelings1.PNG",
-  "KEVINS GOLD": "media/kevins-gold.jpg",
+  "KEVINS GOLD": "media/KevinsGold1.jpeg",
   "COFFEE BREAK": "media/CoffeeBreak1.JPG"
     };
     let modalActive = false;
