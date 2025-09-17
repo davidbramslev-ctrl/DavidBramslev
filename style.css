@@ -1,26 +1,41 @@
 /* 📱 Mobile styles */
 @media (max-width: 768px) {
+  header {
+    min-height: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: #fff;
+    z-index: 1000;
+    box-sizing: border-box;
+  }
   .header-title {
-    position: absolute;
-    top: 12px;
-    left: 12px;
     font-size: 16px;
     margin: 0;
     text-align: left;
     letter-spacing: 0.5px;
     font-weight: 400;
     text-transform: none;
+    color: #111;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .header-mail {
-    position: absolute;
-    top: 12px;
-    right: 1%;
-    font-size: 9px;
+    font-size: 10px;
     color: #1a237e;
-  }
-  header {
-    min-height: 40px;
-    padding: 0;
+    margin-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    max-width: 40vw;
   }
   main {
     margin-top: 60px;
@@ -52,6 +67,14 @@
   .bottom-info {
     font-size: 0.8rem;
     padding-bottom: 80px;
+  }
+
+    .film-list li.mobile-hover {
+      color: #002bff;
+      letter-spacing: 2px;
+      font-weight: 500;
+      transition: color 0.3s, letter-spacing 0.3s;
+    }
   }
 }
 .bottom-social img {
@@ -188,6 +211,7 @@ main {
   margin: 0;
   cursor: pointer;
   transition: color 0.3s ease, letter-spacing 0.3s ease;
+  transform: translateY(-5%);
 }
 
 .film-list li:hover {
