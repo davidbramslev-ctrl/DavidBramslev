@@ -14,8 +14,8 @@
   .header-mail {
     position: absolute;
     top: 12px;
-    right: 12px;
-    font-size: 10px;
+    right: 1%;
+    font-size: 9px;
     color: #1a237e;
   }
   header {
@@ -30,11 +30,12 @@
     padding: 0 2vw;
   }
   .film-list {
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    overflow-x: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 100vw;
     padding: 0;
     margin: 0;
@@ -42,10 +43,11 @@
   }
   .film-list li {
     font-size: 24px;
-    padding: 0 16px;
-    margin-bottom: 0;
+    padding: 32px 0;
+    margin-bottom: 16px;
     letter-spacing: 0.5px;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
   }
   .bottom-info {
     font-size: 0.8rem;
