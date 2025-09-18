@@ -172,7 +172,7 @@ body {
   background: #ffffff;
   background-attachment: fixed;
   color: #111;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -290,3 +290,52 @@ main {
   white-space: nowrap;
   cursor: pointer;
   transition: color 0.3s ease, letter-spacing 0.3s ease;
+/* -------- Mobile: single-scroll, full-viewport titles -------- */
+/* ✅ Mobile adjustments */
+@media (max-width: 768px) {
+  /* Make sure only the whole page scrolls, not the film-list */
+  html, body {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  main {
+    margin-top: 80px;  /* less top space on mobile */
+    padding: 0 10px;
+    display: block; /* stop forcing centering */
+  }
+
+  /* Film list text smaller + stacked */
+  .film-list {
+    display: block;
+    overflow-x: visible; /* disable sideways scroll */
+  }
+
+  .film-list li {
+    font-size: 26px;   /* smaller than desktop */
+    font-weight: 500;
+    padding: 12px 0;
+    text-align: center; /* center align like reference site */
+  }
+
+  /* Header adjustments */
+  header h1 {
+    font-size: 20px;
+  }
+
+  .header-mail {
+    font-size: 12px;
+    right: 10px;
+  }
+
+  .header-icons {
+    top: 20px;
+    left: 10px;
+  }
+
+  /* Bottom info smaller */
+  .bottom-info {
+    font-size: 0.9rem;
+    padding-bottom: 120px;
+  }
+}
