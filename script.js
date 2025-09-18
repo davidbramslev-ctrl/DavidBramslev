@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const filmItems = document.querySelectorAll(".film-list li");
+  const modal = document.getElementById("modal");
+  const videoFrame = document.getElementById("videoFrame");
+  const filmInfo = document.getElementById("filmInfo");
   const body = document.body;
 
-  // Map titles to background images
   const bgImages = {
     "OVER-WOKE": "media/OVER-WOKE1.png",
     "YOU LIKE DRUGS": "media/YouLikeDrugs1.png",
@@ -19,100 +20,81 @@ document.addEventListener("DOMContentLoaded", () => {
     return window.innerWidth <= 768;
   }
 
-  // Find the film title closest to the top
-  function getTopItem() {
-    let topItem = null;
-    let minTop = Infinity;
-    filmItems.forEach(item => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top >= 60 && rect.top < minTop) { // 60px ~ header height
-        minTop = rect.top;
-        topItem = item;
-      }
-    });
-    return topItem;
-  }
-
-  // Apply highlight + background on scroll
-  function updateMobileHighlightBg() {
-    if (!isMobile()) return;
-
-    filmItems.forEach(item => {
-      item.classList.remove("mobile-hover");
-    });
-
-    const topItem = getTopItem();
-    if (topItem) {
-      topItem.classList.add("mobile-hover");
-      const title = topItem.textContent.trim().toUpperCase();
-      const imgPath = bgImages[title];
-      if (imgPath) {
-        body.style.backgroundImage = `url('${imgPath}')`;
-        body.style.backgroundSize = "cover";
-        body.style.backgroundPosition = "center";
-        body.style.backgroundRepeat = "no-repeat";
-      }
+  function setBackgroundFor(title) {
+    const img = bgImages[title];
+    if (img) {
+      body.style.backgroundImage = `url('${img}')`;
+      body.style.backgroundSize = "cover";
+      body.style.backgroundPosition = "center";
+      body.style.backgroundRepeat = "no-repeat";
     } else {
       body.style.backgroundImage = "";
     }
   }
 
-  window.addEventListener("scroll", updateMobileHighlightBg, { passive: true });
-  window.addEventListener("resize", updateMobileHighlightBg);
-  updateMobileHighlightBg();
+  // --- Desktop behavior: hover preview + click opens modal
+  filmItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const videoUrl = item.getAttribute("data-video");
+      const infoText = item.getAttribute("data-info") || "";
+      const title = item.textContent.trim().toUpperCase();
 
-    // Desktop: keep hover/click logic
-    filmItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const videoUrl = item.getAttribute("data-video");
-        const infoText = item.getAttribute("data-info");
-        const title = item.textContent.trim().toUpperCase();
-        const imgPath = bgImages[title];
-        if (imgPath) {
-          body.style.backgroundImage = `url('${imgPath}')`;
-          body.style.backgroundSize = 'cover';
-          body.style.backgroundPosition = 'center';
-          body.style.backgroundRepeat = 'no-repeat';
-          modalActive = true;
+      setBackgroundFor(title);
+      videoFrame.src = videoUrl;
+      filmInfo.textContent = infoText;
+      modal.classList.remove("hidden");
+    });
+
+    item.addEventListener("mouseenter", () => {
+      if (isMobile() || !modal.classList.contains("hidden")) return;
+      const title = item.textContent.trim().toUpperCase();
+      setBackgroundFor(title);
+      item.classList.add("mobile-hover");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      if (isMobile() || !modal.classList.contains("hidden")) return;
+      setTimeout(() => {
+        const stillHovering = Array.from(filmItems).some(el => el.matches(":hover"));
+        if (!stillHovering) body.style.backgroundImage = "";
+        item.classList.remove("mobile-hover");
+      }, 150);
+    });
+  });
+
+  // --- Mobile: use IntersectionObserver to pick the 'in-view' item
+  let observer;
+  function initMobileObserver() {
+    if (observer) observer.disconnect();
+    if (!isMobile()) return;
+
+    // When >60% of the li is visible, treat it as active
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0.6) {
+          // clear previous
+          filmItems.forEach(i => i.classList.remove("mobile-hover"));
+          entry.target.classList.add("mobile-hover");
+          const title = entry.target.textContent.trim().toUpperCase();
+          setBackgroundFor(title);
         }
-        videoFrame.src = videoUrl;
-        filmInfo.textContent = infoText;
-        modal.classList.remove("hidden");
       });
-      if (!isMobile()) {
-        item.addEventListener("mouseenter", () => {
-          if (modalActive) return;
-          const title = item.textContent.trim().toUpperCase();
-          const imgPath = bgImages[title];
-          if (imgPath) {
-            body.style.backgroundImage = `url('${imgPath}')`;
-            body.style.backgroundSize = 'cover';
-            body.style.backgroundPosition = 'center';
-            body.style.backgroundRepeat = 'no-repeat';
-            item.classList.add('mobile-hover');
-          }
-        });
-        item.addEventListener("mouseleave", () => {
-          if (modalActive) return;
-          setTimeout(() => {
-            // Only clear background if not hovering any film title
-            const isHoveringAny = Array.from(filmItems).some(el => el.matches(':hover'));
-            if (!isHoveringAny) {
-              body.style.backgroundImage = '';
-              item.classList.remove('mobile-hover');
-            }
-          }, 500);
-        });
-      }
-    });
+    }, { threshold: [0.6] });
 
-    // Close modal when clicking outside modal-content
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.add("hidden");
-        videoFrame.src = ""; // Stop video when closing
-        body.style.backgroundImage = '';
-        modalActive = false;
-      }
-    });
+    filmItems.forEach(item => observer.observe(item));
+  }
+
+  // initialize (and re-init on resize/orientation change)
+  initMobileObserver();
+  window.addEventListener("resize", initMobileObserver);
+  window.addEventListener("orientationchange", initMobileObserver);
+
+  // --- Modal close
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+      videoFrame.src = "";
+      body.style.backgroundImage = "";
+    }
+  });
 });
