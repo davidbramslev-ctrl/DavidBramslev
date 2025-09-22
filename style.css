@@ -1,341 +1,267 @@
-/* Highlight active item on mobile */
-.film-list li.mobile-hover {
-  color: #002bff;
-  letter-spacing: 2px;
-  font-weight: 500;
-  transition: color 0.3s, letter-spacing 0.3s;
-}
-/* 📱 Mobile styles */
-@media (max-width: 768px) {
-  header {
-    min-height: 40px;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    background: #fff;
-    z-index: 1000;
-    box-sizing: border-box;
-  }
-  .header-title {
-    font-size: 16px;
-    margin: 0;
-    text-align: left;
-    letter-spacing: 0.5px;
-    font-weight: 400;
-    text-transform: none;
-    color: #002bff;
-    flex: 0 1 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: center;
-    transform: translateY(-5%);
-  }
-  .header-mail {
-    font-size: 10px;
-    color: #1a237e;
-    margin-left: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 0 1 auto;
-    align-self: center;
-    max-width: 40vw;
-  }
-  main {
-    margin-top: 40px;
-    min-height: 60vh;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 32px 2vw 0 2vw;
-    box-sizing: border-box;
-  }
-  .film-list {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: visible;
-    overflow-x: hidden;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    gap: 0;
-    touch-action: pan-y;
-  }
-  main {
-    overflow-y: auto;
-  }
-  .film-list li {
-    font-size: 0.5em;
-    padding: 32px 0;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
-    white-space: normal;
-    text-align: center;
-  }
-  .bottom-info {
-    font-size: 0.8rem;
-    padding-bottom: 80px;
-  }
-
-  /* Remove hover effect for mobile */
-  .film-list li.mobile-hover {
-    color: #002bff;
-    letter-spacing: 2px;
-    font-weight: 500;
-    transition: color 0.3s, letter-spacing 0.3s;
-  }
-  }
-}
-.bottom-social img {
-  filter: none;
-  transition: filter 0.3s;
-}
-.bg-cover .bottom-social img {
-  filter: brightness(0) saturate(100%) invert(18%) sepia(100%) saturate(7490%) hue-rotate(222deg) brightness(100%) contrast(100%);
-}
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: transparent;
-  box-shadow: none;
-  min-height: 90px;
-}
-.header-icons {
-  position: absolute;
-  top: 32px;
-  left: 12px;
-  display: flex;
-  gap: 8px;
-}
-.header-mail {
-  position: absolute;
-  top: 32px;
-  right: 3%;
-  font-size: 12.6px;
-  color: #1a237e;
-}
-.header-title {
-  margin-top: 32px;
-}
-main {
-  margin-top: 120px;
-}
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-main {
-  margin-top: 120px;
-}
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-/* Bottom info text at end of page */
-.bottom-info {
-  width: 100%;
-  text-align: center;
-  font-family: inherit;
-  font-size: 0.99rem;
-  color: #002bff;
-  background: transparent;
-  margin: 10vh 0 0 0;
-  padding-bottom: 400px;
-}
-.bottom-info .subtitle {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #222;
-}
-body {
-  margin: 0;
-  overflow-x: hidden;
-  overflow-x: hidden;
-  font-family: "proxima-nova", sans-serif;
-  background: #ffffff;
-  background-attachment: fixed;
-  color: #111;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  padding: 12px 20px;
-}
-
-header h1 {
-  font-size: 25.2px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0.5px;
-  color: #002bff;
-  margin: 1% auto 0 auto;
-  text-align: center;
-  text-transform: capitalize;
-  font-family: 'seismic-latin-variable', sans-serif;
-  font-variation-settings: 'wght' 409, 'SEIS' 100;
-}
-
-main {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.film-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.film-list::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-  gap: 50px;
-  justify-content: flex-start;
-}
-
-.film-list li {
-  font-size: 61.56px;
-  font-weight: 500;
-  padding: 0 50px;
-  margin: 0;
-  cursor: pointer;
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
-  transform: translateY(-5%);
-}
-
-.film-list li:hover {
-  color: #1a237e;
-  color: #002bff;
-  letter-spacing: 2px;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: transparent;
-  border-radius: 0;
-  border: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 900px;
-  width: 90%;
-}
-
-.video-wrapper {
-  border: none;
-  position: relative;
-
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 8px;
-}
-
-.film-info {
-  font-size: 21.6px;
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
-/* -------- Mobile: single-scroll, full-viewport titles -------- */
-/* ✅ Mobile adjustments */
-@media (max-width: 768px) {
-  /* Make sure only the whole page scrolls, not the film-list */
-  html, body {
-    height: auto;
-    overflow-y: auto;
-  }
-
-  main {
-    margin-top: 80px;  /* less top space on mobile */
-    padding: 0 10px;
-    display: block; /* stop forcing centering */
-  }
-
-  /* Film list text smaller + stacked */
-  .film-list {
-    display: block;
-    overflow-x: visible; /* disable sideways scroll */
-  }
-
-  .film-list li {
-    font-size: 26px;   /* smaller than desktop */
-    font-weight: 500;
-    padding: 12px 0;
-    text-align: center; /* center align like reference site */
-  }
-
-  /* Header adjustments */
-  header h1 {
-    font-size: 20px;
-  }
-
-  .header-mail {
-    font-size: 12px;
-    right: 10px;
-  }
-
-  .header-icons {
-    top: 20px;
-    left: 10px;
-  }
-
-  /* Bottom info smaller */
-  .bottom-info {
-    font-size: 0.9rem;
-    padding-bottom: 120px;
-  }
-}
+diff --git a/style.css b/style.css
+index d61062b9740f7b813f5c3d24cbc6ef87b621d091..bb1492bef5ffe8881a451aecfcabe945769aff00 100644
+--- a/style.css
++++ b/style.css
+@@ -1,120 +1,32 @@
+-/* Highlight active item on mobile */
++/* Highlighted film title styling */
+ .film-list li.mobile-hover {
+   color: #002bff;
+   letter-spacing: 2px;
+   font-weight: 500;
+   transition: color 0.3s, letter-spacing 0.3s;
+ }
+-/* 📱 Mobile styles */
+-@media (max-width: 768px) {
+-  header {
+-    min-height: 40px;
+-    padding: 0 12px;
+-    display: flex;
+-    align-items: center;
+-    justify-content: space-between;
+-    position: fixed;
+-    top: 0;
+-    left: 0;
+-    width: 100vw;
+-    background: #fff;
+-    z-index: 1000;
+-    box-sizing: border-box;
+-  }
+-  .header-title {
+-    font-size: 16px;
+-    margin: 0;
+-    text-align: left;
+-    letter-spacing: 0.5px;
+-    font-weight: 400;
+-    text-transform: none;
+-    color: #002bff;
+-    flex: 0 1 auto;
+-    white-space: nowrap;
+-    overflow: hidden;
+-    text-overflow: ellipsis;
+-    align-self: center;
+-    transform: translateY(-5%);
+-  }
+-  .header-mail {
+-    font-size: 10px;
+-    color: #1a237e;
+-    margin-left: 12px;
+-    white-space: nowrap;
+-    overflow: hidden;
+-    text-overflow: ellipsis;
+-    flex: 0 1 auto;
+-    align-self: center;
+-    max-width: 40vw;
+-  }
+-  main {
+-    margin-top: 40px;
+-    min-height: 60vh;
+-    flex-direction: column;
+-    align-items: stretch;
+-    padding: 32px 2vw 0 2vw;
+-    box-sizing: border-box;
+-  }
+-  .film-list {
+-    flex-direction: column;
+-    flex-wrap: nowrap;
+-    align-items: center;
+-    justify-content: flex-start;
+-    overflow-y: visible;
+-    overflow-x: hidden;
+-    width: auto;
+-    padding: 0;
+-    margin: 0;
+-    gap: 0;
+-    touch-action: pan-y;
+-  }
+-  main {
+-    overflow-y: auto;
+-  }
+-  .film-list li {
+-    font-size: 0.5em;
+-    padding: 32px 0;
+-    margin-bottom: 16px;
+-    letter-spacing: 0.5px;
+-    white-space: normal;
+-    text-align: center;
+-  }
+-  .bottom-info {
+-    font-size: 0.8rem;
+-    padding-bottom: 80px;
+-  }
+-
+-  /* Remove hover effect for mobile */
+-  .film-list li.mobile-hover {
+-    color: #002bff;
+-    letter-spacing: 2px;
+-    font-weight: 500;
+-    transition: color 0.3s, letter-spacing 0.3s;
+-  }
+-  }
+-}
+ .bottom-social img {
+   filter: none;
+   transition: filter 0.3s;
+ }
+ .bg-cover .bottom-social img {
+   filter: brightness(0) saturate(100%) invert(18%) sepia(100%) saturate(7490%) hue-rotate(222deg) brightness(100%) contrast(100%);
+ }
+ .site-header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 1000;
+   background: transparent;
+   box-shadow: none;
+   min-height: 90px;
+ }
+ .header-icons {
+   position: absolute;
+   top: 32px;
+   left: 12px;
+   display: flex;
+   gap: 8px;
+ }
+ .header-mail {
+diff --git a/style.css b/style.css
+index d61062b9740f7b813f5c3d24cbc6ef87b621d091..bb1492bef5ffe8881a451aecfcabe945769aff00 100644
+--- a/style.css
++++ b/style.css
+@@ -268,74 +180,109 @@ main {
+ 
+ .video-wrapper {
+   border: none;
+   position: relative;
+ 
+   padding-bottom: 56.25%; /* 16:9 */
+   height: 0;
+ }
+ 
+ .video-wrapper iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border: 0;
+   border-radius: 8px;
+ }
+ 
+ .film-info {
+   font-size: 21.6px;
+   font-weight: 500;
+   white-space: nowrap;
+   cursor: pointer;
+   transition: color 0.3s ease, letter-spacing 0.3s ease;
++}
+ /* -------- Mobile: single-scroll, full-viewport titles -------- */
+ /* ✅ Mobile adjustments */
+ @media (max-width: 768px) {
+-  /* Make sure only the whole page scrolls, not the film-list */
+-  html, body {
++  html,
++  body {
+     height: auto;
++    overflow-x: hidden;
+     overflow-y: auto;
+   }
+ 
+-  main {
+-    margin-top: 80px;  /* less top space on mobile */
+-    padding: 0 10px;
+-    display: block; /* stop forcing centering */
+-  }
+-
+-  /* Film list text smaller + stacked */
+-  .film-list {
++  body {
+     display: block;
+-    overflow-x: visible; /* disable sideways scroll */
+   }
+ 
+-  .film-list li {
+-    font-size: 26px;   /* smaller than desktop */
+-    font-weight: 500;
+-    padding: 12px 0;
+-    text-align: center; /* center align like reference site */
++  .site-header {
++    min-height: 72px;
++    padding: 12px 20px;
++    background: #fff;
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    justify-content: center;
++    gap: 4px;
++    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+   }
+ 
+-  /* Header adjustments */
+-  header h1 {
+-    font-size: 20px;
++  .header-title {
++    margin: 0;
++    font-size: clamp(16px, 4.8vw, 20px);
++    letter-spacing: 0.06em;
++    text-align: center;
++    transform: none;
+   }
+ 
+   .header-mail {
+-    font-size: 12px;
+-    right: 10px;
++    position: static;
++    margin: 0;
++    font-size: clamp(11px, 3.2vw, 13px);
++    max-width: none;
++    text-align: center;
++    white-space: nowrap;
++  }
++
++  main {
++    margin-top: 96px;
++    padding: 0 6vw 120px;
++    display: block;
++    min-height: auto;
++    scroll-padding-top: 96px;
++  }
++
++  .film-list {
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    gap: 8px;
++    width: 100%;
++    padding: 0;
++    margin: 0;
++    overflow: visible;
++    touch-action: pan-y;
+   }
+ 
+-  .header-icons {
+-    top: 20px;
+-    left: 10px;
++  .film-list li {
++    width: 100%;
++    padding: 14px 0;
++    font-size: clamp(28px, 8vw, 40px);
++    font-weight: 400;
++    letter-spacing: 0.16em;
++    text-align: center;
++    line-height: 1.15;
++  }
++
++  .film-list li.mobile-hover {
++    letter-spacing: 0.22em;
+   }
+ 
+-  /* Bottom info smaller */
+   .bottom-info {
+-    font-size: 0.9rem;
+-    padding-bottom: 120px;
++    margin-top: 96px;
++    font-size: 0.88rem;
++    padding-bottom: 140px;
+   }
+ }
