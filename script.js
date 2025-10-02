@@ -11,29 +11,38 @@ document.addEventListener("DOMContentLoaded", () => {
     "WHERE DID I GO": "media/WhereDidIGo.jpg",
     "EN LYCKLIG MAN": "media/EnLyckligman5.png",
     "WHITE ANASTASIA": "media/WHITEANASTASIA3.png",
-    "FEELINGS": "media/Feelings1.PNG",
+    FEELINGS: "media/Feelings1.PNG",
     "KEVINS GOLD": "media/KevinsGold1.jpeg",
-    "COFFEE BREAK": "media/CoffeeBreak1.JPG"
+    "COFFEE BREAK": "media/CoffeeBreak1.JPG",
   };
 
   function isMobile() {
     return window.innerWidth <= 768;
   }
 
+  function clearBackground() {
+    body.classList.remove("bg-cover");
+    body.style.backgroundImage = "";
+    body.style.backgroundSize = "";
+    body.style.backgroundPosition = "";
+    body.style.backgroundRepeat = "";
+  }
+
   function setBackgroundFor(title) {
     const img = bgImages[title];
     if (img) {
+      body.classList.add("bg-cover");
       body.style.backgroundImage = `url('${img}')`;
       body.style.backgroundSize = "cover";
       body.style.backgroundPosition = "center";
       body.style.backgroundRepeat = "no-repeat";
     } else {
-      body.style.backgroundImage = "";
+      clearBackground();
     }
   }
 
   // --- Desktop behavior: hover preview + click opens modal
-  filmItems.forEach(item => {
+  filmItems.forEach((item) => {
     item.addEventListener("click", () => {
       const videoUrl = item.getAttribute("data-video");
       const infoText = item.getAttribute("data-info") || "";
@@ -55,8 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("mouseleave", () => {
       if (isMobile() || !modal.classList.contains("hidden")) return;
       setTimeout(() => {
-        const stillHovering = Array.from(filmItems).some(el => el.matches(":hover"));
-        if (!stillHovering) body.style.backgroundImage = "";
+        const stillHovering = Array.from(filmItems).some((el) =>
+          el.matches(":hover"),
+        );
+        if (!stillHovering) clearBackground();
         item.classList.remove("mobile-hover");
       }, 150);
     });
@@ -69,19 +80,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isMobile()) return;
 
     // When >60% of the li is visible, treat it as active
-    observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0.6) {
-          // clear previous
-          filmItems.forEach(i => i.classList.remove("mobile-hover"));
-          entry.target.classList.add("mobile-hover");
-          const title = entry.target.textContent.trim().toUpperCase();
-          setBackgroundFor(title);
-        }
-      });
-    }, { threshold: [0.6] });
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0.6) {
+            // clear previous
+            filmItems.forEach((i) => i.classList.remove("mobile-hover"));
+            entry.target.classList.add("mobile-hover");
+            const title = entry.target.textContent.trim().toUpperCase();
+            setBackgroundFor(title);
+          }
+        });
+      },
+      { threshold: [0.6] },
+    );
 
-    filmItems.forEach(item => observer.observe(item));
+    filmItems.forEach((item) => observer.observe(item));
   }
 
   // initialize (and re-init on resize/orientation change)
@@ -94,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === modal) {
       modal.classList.add("hidden");
       videoFrame.src = "";
-      body.style.backgroundImage = "";
+      clearBackground();
     }
   });
 });
