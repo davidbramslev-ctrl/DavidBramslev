@@ -1,2 +1,0 @@
-# DavidBramslev
-Filmmaker portifolio
