@@ -1,0 +1,268 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "proxima-nova", sans-serif;
+  background: #ffffff;
+  background-attachment: fixed;
+  color: #111;
+  overflow-x: hidden;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  box-shadow: none;
+  min-height: 90px;
+  padding: 12px 20px;
+}
+
+.header-mail {
+  position: absolute;
+  top: 32px;
+  right: 3%;
+  font-size: 14px;
+  color: #002bff;
+}
+
+.header-mail a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header-mail a:hover,
+.header-mail a:focus {
+  text-decoration: underline;
+}
+
+.header-title {
+  margin: 32px auto 0;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #002bff;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: "seismic-latin-variable", sans-serif;
+  font-variation-settings:
+    "wght" 409,
+    "SEIS" 100;
+}
+
+main {
+  flex: 1;
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  overflow-y: auto;
+}
+
+.film-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.film-list::-webkit-scrollbar {
+  display: none;
+}
+
+.film-list li {
+  font-size: 72px;
+  font-weight: 500;
+  padding: 0 50px;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.film-list li:hover {
+  color: #002bff;
+}
+
+.film-list li.mobile-hover {
+  color: #002bff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.bottom-info {
+  width: 100%;
+  text-align: center;
+  font-size: 1.21rem;
+  color: #000;
+  background: transparent;
+  margin: 10vh 0 0;
+  padding: 0 20px 400px;
+}
+
+.bottom-info .subtitle {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.bottom-social {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.bottom-social img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: none;
+  transition: filter 0.3s;
+}
+
+body.bg-cover .bottom-social img {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(100%) saturate(7490%)
+    hue-rotate(222deg) brightness(100%) contrast(100%);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-content {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 900px;
+  width: 90%;
+  position: relative;
+}
+
+.video-wrapper {
+  border: none;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+.film-info {
+  font-size: 24px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .header-mail {
+    position: static;
+    order: 2;
+    font-size: 12px;
+  }
+
+  .header-title {
+    margin: 0;
+    font-size: 26px;
+  }
+
+  main {
+    margin-top: 160px;
+    align-items: flex-start;
+    padding: 0 20px 80px;
+    min-height: auto;
+  }
+
+  .film-list {
+    flex-direction: column;
+    gap: 32px;
+    overflow: visible;
+    align-items: center;
+  }
+
+  .film-list li {
+    padding: 0;
+    font-size: 42px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .bottom-info {
+    margin-top: 80px;
+    padding-bottom: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .header-title {
+    font-size: 24px;
+  }
+
+  .header-mail {
+    font-size: 13px;
+  }
+
+  .film-list li {
+    font-size: 38px;
+  }
+}
