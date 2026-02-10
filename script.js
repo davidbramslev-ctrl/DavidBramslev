@@ -1,24 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const filmItems = document.querySelectorAll(".film-list li");
-  const modal = document.getElementById("modal");
-  const videoFrame = document.getElementById("videoFrame");
-  const filmInfo = document.getElementById("filmInfo");
+  const filmItems = document.querySelectorAll(".film-item");
   const body = document.body;
+  const mobileQuery = window.matchMedia("(max-width: 768px)");
 
   const bgImages = {
-    "THE WAIT": "media/TheWait.png",
-    "OVER-WOKE": "media/OVER-WOKE1.png",
-    "YOU LIKE DRUGS": "media/YouLikeDrugs1.png",
-    "WHERE DID I GO": "media/WhereDidIGo.jpg",
-    "EN LYCKLIG MAN": "media/EnLyckligman5.png",
-    "WHITE ANASTASIA": "media/WHITEANASTASIA3.png",
-    FEELINGS: "media/Feelings1.PNG",
-    "KEVINS GOLD": "media/KevinsGold1.jpeg",
-    "COFFEE BREAK": "media/CoffeeBreak1.JPG",
+    "THE WAIT": "media/thewait.png",
+    "OVER-WOKE": "media/over-woke1.png",
+    "YOU LIKE DRUGS": "media/youlikedrugs1.png",
+    "WHERE DID I GO": "media/wheredidigo.jpg",
+    "EN LYCKLIG MAN": "media/enlyckligman5.png",
+    "WHITE ANASTASIA": "media/whiteanastasia3.png",
+    FEELINGS: "media/feelings1.png",
+    "KEVINS GOLD": "media/kevinsgold1.jpeg",
   };
 
   function isMobile() {
-    return window.innerWidth <= 768;
+    return mobileQuery.matches;
   }
 
   function clearBackground() {
@@ -30,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setBackgroundFor(title) {
+    if (isMobile()) return;
     const img = bgImages[title];
     if (img) {
       body.classList.add("bg-cover");
@@ -42,39 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- Desktop behavior: hover preview + click opens modal
   filmItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const title = item.textContent.trim().toUpperCase();
-      setBackgroundFor(title);
-
-      // Handle "coming soon" items
-      if (item.classList.contains("coming-soon")) {
-        filmInfo.textContent = "COMING SOON";
-        videoFrame.src = "";
-        modal.classList.remove("hidden");
-        body.classList.add("modal-open");
-        return;
-      }
-
-      const videoUrl = item.getAttribute("data-video");
-      const infoText = item.getAttribute("data-info") || "";
-
-      videoFrame.src = videoUrl;
-      filmInfo.textContent = infoText;
-      modal.classList.remove("hidden");
-      body.classList.add("modal-open");
-    });
-
     item.addEventListener("mouseenter", () => {
-      if (isMobile() || !modal.classList.contains("hidden")) return;
-      const title = item.textContent.trim().toUpperCase();
+      if (isMobile()) return;
+      const title = item.dataset.title || "";
       setBackgroundFor(title);
       item.classList.add("mobile-hover");
     });
 
     item.addEventListener("mouseleave", () => {
-      if (isMobile() || !modal.classList.contains("hidden")) return;
+      if (isMobile()) return;
       setTimeout(() => {
         const stillHovering = Array.from(filmItems).some((el) =>
           el.matches(":hover"),
@@ -85,43 +60,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- Mobile: use IntersectionObserver to pick the 'in-view' item
-  let observer;
-  function initMobileObserver() {
-    if (observer) observer.disconnect();
-    if (!isMobile()) return;
-
-    // When >60% of the li is visible, treat it as active
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.intersectionRatio > 0.6) {
-            // clear previous
-            filmItems.forEach((i) => i.classList.remove("mobile-hover"));
-            entry.target.classList.add("mobile-hover");
-            const title = entry.target.textContent.trim().toUpperCase();
-            setBackgroundFor(title);
-          }
-        });
-      },
-      { threshold: [0.6] },
-    );
-
-    filmItems.forEach((item) => observer.observe(item));
-  }
-
-  // initialize (and re-init on resize/orientation change)
-  initMobileObserver();
-  window.addEventListener("resize", initMobileObserver);
-  window.addEventListener("orientationchange", initMobileObserver);
-
-  // --- Modal close
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.add("hidden");
-      body.classList.remove("modal-open");
-      videoFrame.src = "";
-      clearBackground();
+  const comingSoonItems = document.querySelectorAll(".film-item.coming-soon");
+  comingSoonItems.forEach((item) => {
+    const link = item.querySelector("a");
+    const showBadge = () => {
+      if (isMobile()) return;
+      item.classList.add("is-active");
+    };
+    if (link) {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        showBadge();
+      });
     }
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+      showBadge();
+    });
+
+    item.addEventListener("mouseleave", () => {
+      if (isMobile()) return;
+      item.classList.remove("is-active");
+    });
   });
 });

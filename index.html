@@ -7,59 +7,195 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://use.typekit.net/jvk3rir.css" />
   </head>
-  <body>
+  <body class="home-page">
     <header class="site-header">
-      <div class="header-mail">
-        <a href="mailto:hello@davidbramslev.com">hello@davidbramslev.com</a>
+      <div class="header-info">
+        <a href="about.html"><span class="label-desktop">information</span><span class="label-mobile">information</span></a>
       </div>
-      <h1 class="header-title">David Bramslev</h1>
+      <h1 class="header-title">
+        <a class="label-desktop" href="index.html">David Bramslev</a>
+        <a class="label-mobile" href="index.html">D.B.</a>
+      </h1>
+      <div class="header-mail">
+        <a class="label-desktop" href="mailto:hello@davidbramslev.com">hello@davidbramslev.com</a>
+        <a class="label-mobile" href="mailto:hello@davidbramslev.com">contact</a>
+      </div>
     </header>
 
     <main>
       <ul class="film-list">
-        <li class="coming-soon">
-          THE WAIT
+        <li
+          class="film-item coming-soon"
+          data-title="THE WAIT"
+          data-meta="Coming Soon"
+          data-year="YYYY"
+          data-format="FORMAT"
+          data-logline="Logline placeholder text."
+          data-credits="Credits placeholder text."
+          data-location="Location placeholder text."
+          data-poster="media/thewait.png"
+        >
+          <a class="film-button film-link" href="projects/the-wait.html">
+            <span class="thumb">
+              <img src="media/thewait.png" alt="The Wait still" loading="lazy" />
+            </span>
+            <span class="coming-soon-badge">coming soon</span>
+            <span class="film-text">
+              <span class="film-title">THE WAIT</span>
+              <span class="film-meta">Coming Soon</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/938143193">
-          YOU LIKE DRUGS
+        <li
+          class="film-item"
+          data-title="YOU LIKE DRUGS"
+          data-meta="Music Film"
+          data-year="2024"
+          data-format="Digital"
+          data-credits="Credits placeholder text."
+          data-location="Copenhagen, Denmark"
+          data-poster="Thumbnails/YLD.avif"
+          data-video="https://player.vimeo.com/video/938143193"
+        >
+          <a class="film-button film-link" href="projects/you-like-drugs.html">
+            <span class="thumb">
+              <img src="Thumbnails/YLD.avif" alt="You Like Drugs thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">YOU LIKE DRUGS</span>
+              <span class="film-meta">Music Film</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/1031727140">
-          OVER-WOKE
+        <li
+          class="film-item"
+          data-title="OVER-WOKE"
+          data-meta="Short Film"
+          data-year="2024"
+          data-format="Digital"
+          data-logline="A short film about language and how a word can lose itself over time."
+          data-credits="Credits placeholder text."
+          data-location="Oslo, Norway"
+          data-poster="Thumbnails/OV.avif"
+          data-video="https://player.vimeo.com/video/1031727140"
+        >
+          <a class="film-button film-link" href="projects/over-woke.html">
+            <span class="thumb">
+              <img src="Thumbnails/OV.avif" alt="Over-Woke thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">OVER-WOKE</span>
+              <span class="film-meta">Short Film</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/933648961">
-          WHERE DID I GO
+        <li
+          class="film-item"
+          data-title="WHERE DID I GO"
+          data-meta="Music Video"
+          data-year="2024"
+          data-format="Digital"
+          data-credits="Credits placeholder text."
+          data-location="Copenhagen, Denmark"
+          data-poster="Thumbnails/WDIG.avif"
+          data-video="https://player.vimeo.com/video/933648961"
+        >
+          <a class="film-button film-link" href="projects/where-did-i-go.html">
+            <span class="thumb">
+              <img src="Thumbnails/WDIG.avif" alt="Where Did I Go thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">WHERE DID I GO</span>
+              <span class="film-meta">Music Video</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/877807338">
-          EN LYCKLIG MAN
+        <li
+          class="film-item"
+          data-title="EN LYCKLIG MAN"
+          data-meta="Music Video"
+          data-year="2023"
+          data-format="Digital"
+          data-credits="Credits placeholder text."
+          data-location="Moss, Norway"
+          data-poster="Thumbnails/ELM.avif"
+          data-video="https://player.vimeo.com/video/877807338"
+        >
+          <a class="film-button film-link" href="projects/en-lycklig-man.html">
+            <span class="thumb">
+              <img src="Thumbnails/ELM.avif" alt="En Lycklig Man thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">EN LYCKLIG MAN</span>
+              <span class="film-meta">Music Video</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/843287731">
-          WHITE ANASTASIA
+        <li
+          class="film-item"
+          data-title="WHITE ANASTASIA"
+          data-meta="Short Film"
+          data-year="2023"
+          data-logline="There is nothing as peaceful and dangerous as... tea!"
+          data-credits="Credits placeholder text."
+          data-location="Copenhagen, Denmark"
+          data-poster="Thumbnails/WA.avif"
+          data-video="https://player.vimeo.com/video/843287731"
+        >
+          <a class="film-button film-link" href="projects/white-anastasia.html">
+            <span class="thumb">
+              <img src="Thumbnails/WA.avif" alt="White Anastasia thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">WHITE ANASTASIA</span>
+              <span class="film-meta">Short Film</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/812782892">FEELINGS</li>
-        <li data-video="https://player.vimeo.com/video/812484130">
-          KEVINS GOLD
+        <li
+          class="film-item"
+          data-title="FEELINGS"
+          data-meta="Music Video"
+          data-year="2023"
+          data-format="Digital"
+          data-credits="Credits placeholder text."
+          data-location="Copenhagen, Denmark"
+          data-poster="Thumbnails/F.avif"
+          data-video="https://player.vimeo.com/video/812782892"
+        >
+          <a class="film-button film-link" href="projects/feelings.html">
+            <span class="thumb">
+              <img src="Thumbnails/F.avif" alt="Feelings thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">FEELINGS</span>
+              <span class="film-meta">Music Video</span>
+            </span>
+          </a>
         </li>
-        <li data-video="https://player.vimeo.com/video/875652237">
-          COFFEE BREAK
+        <li
+          class="film-item"
+          data-title="KEVINS GOLD"
+          data-meta="Music Video"
+          data-year="2023"
+          data-format="Digital"
+          data-credits="Credits placeholder text."
+          data-location="Copenhagen, Denmark"
+          data-poster="Thumbnails/KG.avif"
+          data-video="https://player.vimeo.com/video/812484130"
+        >
+          <a class="film-button film-link" href="projects/kevins-gold.html">
+            <span class="thumb">
+              <img src="Thumbnails/KG.avif" alt="Kevins Gold thumbnail" loading="lazy" />
+            </span>
+            <span class="film-text">
+              <span class="film-title">KEVINS GOLD</span>
+              <span class="film-meta">Music Video</span>
+            </span>
+          </a>
         </li>
       </ul>
     </main>
-
-    <!-- Modal -->
-    <div id="modal" class="modal hidden">
-      <div class="modal-content">
-        <div class="video-wrapper">
-          <iframe
-            id="videoFrame"
-            src=""
-            frameborder="0"
-            allow="autoplay; fullscreen"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div id="filmInfo" class="film-info"></div>
-      </div>
-    </div>
 
     <script src="script.js"></script>
     <div class="bottom-info">
