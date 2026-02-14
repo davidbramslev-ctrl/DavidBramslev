@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
 :root {
   --project-bg: #0b0b0b;
   --project-text: #f2f2f2;
@@ -7,7 +9,7 @@
 
 body.project-page {
   margin: 0;
-  font-family: "proxima-nova", sans-serif;
+  font-family: "Inter", sans-serif;
   background: var(--project-bg);
   color: var(--project-text);
   min-height: 100vh;
@@ -252,7 +254,12 @@ body.project-page {
   }
 
   .play-cursor {
-    display: none;
+    display: block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    letter-spacing: 0.22em;
   }
 
   .project-info {
@@ -310,6 +317,7 @@ body.project-page {
     grid-area: mail;
     transform: translate(10px, -2px);
     align-self: center;
+    font-family: "Inter", sans-serif;
   }
 
   .label-desktop {
