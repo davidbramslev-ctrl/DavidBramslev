@@ -3,10 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.querySelector(".hero-video iframe");
   const playCursor = document.querySelector(".play-cursor");
   const mobileQuery = window.matchMedia("(max-width: 900px)");
+  const customCursorLabel = (hero?.dataset.cursorLabel || "").trim();
+  const isComingSoon = customCursorLabel.toUpperCase() === "COMING SOON";
 
-  if (!hero || !iframe || !playCursor) return;
+  if (!hero || !playCursor) return;
 
   function syncPromptLabel() {
+    if (customCursorLabel) {
+      playCursor.textContent = customCursorLabel;
+      return;
+    }
     playCursor.textContent = mobileQuery.matches ? "CLICK TO PLAY" : "PLAY";
   }
 
@@ -41,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", syncPromptOpacity, { passive: true });
 
   function playVideo() {
+    if (isComingSoon || !iframe) return;
     const url = hero.getAttribute("data-video");
     if (!url) return;
     const joiner = url.includes("?") ? "&" : "?";

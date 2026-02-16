@@ -675,10 +675,6 @@ body.bg-cover .bottom-social img {
     margin: 0 0 16px;
   }
 
-  body.home-page .film-item[data-title="THE WAIT"] {
-    display: none;
-  }
-
   body.home-page .header-mail {
     transform: translateX(5px);
   }

@@ -253,6 +253,17 @@ body.project-page {
     cursor: pointer;
   }
 
+  .the-wait-page .hero-media {
+    background-image: url("media/THE_WAIT_BG_PHONE.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .the-wait-page .hero-poster {
+    display: none;
+  }
+
   .play-cursor {
     display: block;
     left: 50%;
