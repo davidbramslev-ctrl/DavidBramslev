@@ -1,0 +1,6 @@
+.DS_Store
+.netlify/
+
+# Legacy media no longer referenced by the site.
+assets/media/intro-loop.mp4
+assets/media/LOOPINGBGVID.mp4
